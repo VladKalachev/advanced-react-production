@@ -1,3 +1,3 @@
 import { someFunction } from "./test";
 
-someFunction()
+someFunction(1)
