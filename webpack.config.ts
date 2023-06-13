@@ -14,9 +14,13 @@ const paths: BuildPaths = {
   buildLocales: path.resolve(__dirname, 'build', 'locales'),
 };
 
+const mode = 'development';
+const isDev = mode === 'development'; 
+
 const config: webpack.Configuration = buildWebpackConfig({
   mode: 'development',
   paths,
+  isDev,
 })
 
 export default config;

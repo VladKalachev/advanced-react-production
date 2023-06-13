@@ -6,15 +6,17 @@ import { buildLoaders } from "./buildLoaders";
 import { buildResolvers } from "./buildResolvers";
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+  const { mode, paths } = options;
+
   return {
-    mode: 'development',
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
+    mode,
+    entry: paths.entry,
     output: {
       filename: '[name][contenthash].js',
-      path: path.resolve(__dirname, 'build'),
+      path: paths.build,
       clean: true,
     },
-    plugins: buildPlugins(),
+    plugins: buildPlugins(options),
     module: {
       rules: buildLoaders(),
     },
