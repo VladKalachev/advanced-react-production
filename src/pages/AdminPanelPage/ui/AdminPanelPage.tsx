@@ -2,4 +2,4 @@ const AdminPanelPage = () => {
   return <>AdminPanelPage</>
 }
 
-export default AdminPanelPage
+export default AdminPanelPage;
