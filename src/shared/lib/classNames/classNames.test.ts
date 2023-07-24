@@ -1,5 +1,7 @@
+import { classNames } from "./classNames";
+
 describe("className", () => {
   test("test", () => {
-    expect(true).toBe(true);
+    expect(classNames("someClass")).toBe("someClass");
   });
 });
