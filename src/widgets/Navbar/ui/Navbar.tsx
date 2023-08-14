@@ -6,6 +6,7 @@ interface NavbarProps {
   className?: string;
 }
 
+// Навигация
 export const Navbar = ({ className }: NavbarProps) => {
   return (
     <div className={classNames(cls.Navbar, {}, [className])}>
