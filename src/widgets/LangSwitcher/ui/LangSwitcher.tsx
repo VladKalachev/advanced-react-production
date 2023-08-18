@@ -7,7 +7,6 @@ interface LangSwitcherProps {
   className?: string;
 }
 
-// Компонент переключения языка
 export const LangSwitcher = ({ className }: LangSwitcherProps) => {
   const { t, i18n } = useTranslation();
 
