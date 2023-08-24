@@ -12,8 +12,8 @@
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "unit": "jest --config ./config/jest/jest.config.ts",
-    "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "storybook": "start-storybook -p 6006 --no-dll -c ./config/storybook",
+    "build-storybook": "build-storybook --no-dll -c ./config/storybook"
   },
   "keywords": [],
   "author": "",
