@@ -3,8 +3,6 @@ import { Button, ButtonTheme, ButtonSize } from "./Button";
 import { Story, Meta } from "@storybook/react/types-6-0";
 import { Theme } from "@/shared/const/theme";
 
-import "app/styles/index.scss";
-
 export default {
   title: "shared/Button",
   component: Button,
