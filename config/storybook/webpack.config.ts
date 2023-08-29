@@ -19,6 +19,22 @@ export default ({ config }: { config: webpack.Configuration }) => {
     "@": paths.src,
   };
 
+  config!.module!.rules = config!.module!.rules!.map(
+    // @ts-ignore
+    (rule: RuleSetRule) => {
+      if (/svg/.test(rule.test as string)) {
+        return { ...rule, exclude: /\.svg$/i };
+      }
+
+      return rule;
+    }
+  );
+
+  config!.module!.rules.push({
+    test: /\.svg$/,
+    use: ["@svgr/webpack"],
+  });
+
   config.module?.rules?.push(buildCssLoader(true));
 
   return config;
