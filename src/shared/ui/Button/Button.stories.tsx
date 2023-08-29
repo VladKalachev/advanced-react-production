@@ -1,9 +1,9 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-
 import { ThemeDecorator } from "@/shared/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Button, ButtonTheme, ButtonSize } from "./Button";
+import { Story, Meta } from "@storybook/react/types-6-0";
 import { Theme } from "@/shared/const/theme";
+
+import "app/styles/index.scss";
 
 export default {
   title: "shared/Button",
@@ -11,9 +11,9 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: Story<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
