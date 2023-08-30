@@ -28,7 +28,7 @@ module.exports = {
       },
     },
   ],
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "i18next", "react-hooks"],
   rules: {
     quotes: "off",
     "@typescript-eslint/quotes": "error",
