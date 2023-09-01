@@ -7,13 +7,10 @@ import { StateSchema } from "../config/StateSchema";
 interface StoreProviderProps {
   children?: ReactNode;
   initialState?: StateSchema;
-  //   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
   const { children, initialState } = props;
-
-  // const navigate = useNavigate();
 
   const store = createReduxStore(initialState);
 
