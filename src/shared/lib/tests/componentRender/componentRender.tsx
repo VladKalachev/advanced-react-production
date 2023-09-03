@@ -28,14 +28,14 @@ export function TestProvider(props: TestProviderProps) {
   const {
     route = "/",
     initialState,
-    // asyncReducers,
+    asyncReducers,
     theme = Theme.LIGHT,
   } = options;
 
   return (
     <MemoryRouter initialEntries={[route]}>
       <StoreProvider
-        // asyncReducers={asyncReducers}
+        //  asyncReducers={asyncReducers}
         initialState={initialState}
       >
         <I18nextProvider i18n={i18nForTests}>
