@@ -9,7 +9,7 @@ const router = jsonServer.router(path.resolve(__dirname, "db.json"));
 
 // Нужно для большой задержки, что бы запрос проходил не мгновенно, имитация реального api
 server.use(async (req, res, next) => {
-  await new Promise((resolve, reject) => {
+  await new Promise((res) => {
     setTimeout(res, 800);
   });
   next();
@@ -18,7 +18,7 @@ server.use(async (req, res, next) => {
 // проверяем, авторизован ли пользователь
 server.use(async (req, res, next) => {
   if (!req.headers.authorization) {
-    return res.status(403).send({ message: "AUTH ERROR" });
+    return res.status(403).json({ message: "AUTH ERROR" });
   }
 
   next();
