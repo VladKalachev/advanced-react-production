@@ -1,6 +1,6 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Modal } from "@/shared/ui/Modal";
-import { LoginForm } from "../LoginForm/LoginForm";
+import { LoginFormAsync } from "../LoginForm/LoginForm.async";
 import cls from "./LoginModal.module.scss";
 interface LoginFormProps {
   className?: string;
@@ -16,7 +16,7 @@ export const LoginModal = ({ className, isOpen, onClose }: LoginFormProps) => {
       onClose={onClose}
       lazy
     >
-      <LoginForm />
+      <LoginFormAsync />
     </Modal>
   );
 };
