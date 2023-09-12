@@ -9,6 +9,7 @@ import { getLoginError } from "../../model/selectors/getLoginError/getLoginError
 import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
 import { getLoginUsername } from "../../model/selectors/getLoginUsername/getLoginUsername";
+import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
 import { loginActions } from "../../model/slice/loginSlice";
 import cls from "./LoginForm.module.scss";
 
@@ -39,7 +40,8 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
   );
 
   const onLoginClick = useCallback(async () => {
-    // const result = await dispatch(loginByUsername({ username, password }));
+    dispatch(loginByUsername({ username, password }));
+    // dispatch(loginByUsername({ username, password }));
     // if (result.meta.requestStatus === 'fulfilled') {
     //     onSuccess();
     //     forceUpdate();
