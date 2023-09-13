@@ -2,10 +2,12 @@ const fs = require("fs");
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-
+const cors = require("cors");
 const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, "db.json"));
+
+server.use(cors());
 
 // Нужно для большой задержки, что бы запрос проходил не мгновенно, имитация реального api
 server.use(async (req, res, next) => {

@@ -40,6 +40,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
   );
 
   const onLoginClick = useCallback(async () => {
+    // @ts-ignore
     dispatch(loginByUsername({ username, password }));
     // dispatch(loginByUsername({ username, password }));
     // if (result.meta.requestStatus === 'fulfilled') {
