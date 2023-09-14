@@ -31,7 +31,9 @@ server.use(router);
 
 // Эндпоинт для логина
 server.post("./login", (req, res) => {
+  console.log(222, req);
   const { username, password } = req.body;
+  console.log("body", username, password);
   const db = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8")
   );
@@ -39,6 +41,8 @@ server.post("./login", (req, res) => {
   const userFromBd = users.find(
     (user) => user.username === username && user.password === password
   );
+
+  console.log("userFromBd", userFromBd);
 
   if (userFromBd) {
     return res.json(userFromBd);
