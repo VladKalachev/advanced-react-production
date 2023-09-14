@@ -1,6 +1,7 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
+import { Text, TextTheme } from "@/shared/ui/Text";
 import { memo, useCallback } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -51,7 +52,8 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
-      {error && <div>{error}</div>}
+      <Text title={t("Форма авторизации")} />
+      {error && <Text title={error} theme={TextTheme.ERROR} />}
       <Input
         autofocus
         type="text"
