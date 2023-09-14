@@ -51,6 +51,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
+      {error && <div>{error}</div>}
       <Input
         autofocus
         type="text"
@@ -70,6 +71,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         className={cls.loginBtn}
         onClick={onLoginClick}
         theme={ButtonTheme.OUTLINE}
+        disabled={isLoading}
       >
         {t("Войти")}
       </Button>
