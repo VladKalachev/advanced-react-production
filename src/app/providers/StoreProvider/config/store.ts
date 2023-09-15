@@ -6,8 +6,12 @@ import { createReducerManager } from "./reducerManager";
 // import { CombinedState, Reducer } from "redux";
 import type { StateSchema } from "./StateSchema";
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>
+) {
   const rootReducer: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
   };
