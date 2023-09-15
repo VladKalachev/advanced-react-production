@@ -1,17 +1,18 @@
+import { ReduxStoreWithManager } from "@/app/providers/StoreProvider";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Text, TextTheme } from "@/shared/ui/Text";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
 import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
 import { getLoginUsername } from "../../model/selectors/getLoginUsername/getLoginUsername";
 import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
-import { loginActions } from "../../model/slice/loginSlice";
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import cls from "./LoginForm.module.scss";
 
 export interface LoginFormProps {
@@ -25,6 +26,16 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
   const password = useSelector(getLoginPassword);
   const isLoading = useSelector(getLoginIsLoading);
   const error = useSelector(getLoginError);
+
+  const store = useStore() as ReduxStoreWithManager;
+
+  useEffect(() => {
+    store.reducerManager.add("loginForm", loginReducer);
+
+    return () => {
+      store.reducerManager.remove("loginForm");
+    };
+  }, []);
 
   const onChangeUsername = useCallback(
     (value: string) => {
