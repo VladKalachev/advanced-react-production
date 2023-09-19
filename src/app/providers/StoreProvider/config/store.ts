@@ -1,10 +1,11 @@
 import { counterReducer } from "@/entities/Counter";
 import { userReducer } from "@/entities/User";
 import { loginReducer } from "@/features/AuthByUsername/model/slice/loginSlice";
+import { $api } from "@/shared/api/api";
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { createReducerManager } from "./reducerManager";
 // import { CombinedState, Reducer } from "redux";
-import type { StateSchema } from "./StateSchema";
+import type { StateSchema, ThunkExtraArg } from "./StateSchema";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -18,10 +19,20 @@ export function createReduxStore(
 
   const reducerManager = createReducerManager(rootReducer);
 
-  const store = configureStore<StateSchema>({
+  const extraArg: ThunkExtraArg = {
+    api: $api,
+  };
+
+  const store = configureStore({
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: extraArg,
+        },
+      }),
   });
 
   // @ts-ignore

@@ -16,7 +16,7 @@ export const loginByUsername = createAsyncThunk<
 >("login/loginByUsername", async (authData, thunkApi) => {
   const { extra, dispatch, rejectWithValue } = thunkApi;
   try {
-    const response = await axios.post("http://localhost:8000/login", authData);
+    const response = await extra.api.post("/login", authData);
 
     if (!response.data) {
       throw new Error();
