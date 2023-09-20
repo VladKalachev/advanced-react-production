@@ -16,7 +16,7 @@ export const loginByUsername = createAsyncThunk<
 >("login/loginByUsername", async (authData, thunkApi) => {
   const { extra, dispatch, rejectWithValue } = thunkApi;
   try {
-    const response = await extra.api.post("/login", authData);
+    const response = await extra.api.post<User>("/login", authData);
 
     if (!response.data) {
       throw new Error();
@@ -30,18 +30,4 @@ export const loginByUsername = createAsyncThunk<
     console.error(e);
     return rejectWithValue("error");
   }
-
-  // try {
-  //   const response = await extra.api.post<User>("/login", authData);
-
-  //   if (!response.data) {
-  //     throw new Error();
-  //   }
-
-  //   // dispatch(userActions.setAuthData(response.data));
-  //   return response.data;
-  // } catch (e) {
-  //   console.log(e);
-  //   return rejectWithValue("error");
-  // }
 });
