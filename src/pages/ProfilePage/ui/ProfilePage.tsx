@@ -35,7 +35,6 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         data-testid="ProfilePage"
         className={classNames("", {}, [className])}
       >
-        ProfilePage
         <ProfileCard />
       </div>
     </DynamicModuleLoader>

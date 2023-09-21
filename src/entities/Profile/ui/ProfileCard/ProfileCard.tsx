@@ -8,6 +8,7 @@ import { Text, TextTheme } from "@/shared/ui/Text";
 import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 
 export interface ProfileCardProps {
   className?: string;
@@ -26,9 +27,23 @@ export const ProfileCard = ({ className }: ProfileCardProps) => {
 
   return (
     <div className={classNames(cls.ProfileCard, {}, [className])}>
-      <div>
+      <div className={cls.header}>
         <Text title={t("Профиль")} />
-        <Button theme={ButtonTheme.OUTLINE}>{t("Редактировать")}</Button>
+        <Button className={cls.editBtn} theme={ButtonTheme.OUTLINE}>
+          {t("Редактировать")}
+        </Button>
+      </div>
+      <div className={cls.data}>
+        <Input
+          value={data?.first}
+          placeholder={t("Ваше имя")}
+          className={cls.input}
+        />
+        <Input
+          value={data?.lastname}
+          placeholder={t("Ваша фамилия")}
+          className={cls.input}
+        />
       </div>
     </div>
   );
