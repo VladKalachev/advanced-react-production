@@ -18,20 +18,19 @@ server.use(async (req, res, next) => {
 });
 
 // проверяем, авторизован ли пользователь
-server.use(async (req, res, next) => {
-  if (!req.headers.authorization) {
-    return res.status(403).json({ message: "AUTH ERROR" });
-  }
+// server.use(async (req, res, next) => {
+//   if (!req.headers.authorization) {
+//     return res.status(403).json({ message: "AUTH ERROR" });
+//   }
 
-  next();
-});
+//   next();
+// });
 
 server.use(jsonServer.defaults());
 server.use(router);
 
 // Эндпоинт для логина
 server.post("./login", (req, res) => {
-  console.log(222, req);
   const { username, password } = req.body;
   console.log("body", username, password);
   const db = JSON.parse(
