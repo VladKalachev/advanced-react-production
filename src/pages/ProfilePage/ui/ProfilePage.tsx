@@ -5,6 +5,9 @@ import {
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { profileReducer } from "@/entities/Profile";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useEffect } from "react";
+import { fetchProfileData } from "@/entities/Profile";
 // import { Page } from "@/widgets/Page";
 // import { VStack } from '@/shared/ui/redesigned/Stack';
 // import { EditableProfileCard } from "@/features/editableProfileCard";
@@ -20,6 +23,12 @@ const reducers: ReducersList = {
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const { id } = useParams<{ id: string }>();
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProfileData());
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div
@@ -27,9 +36,6 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         className={classNames("", {}, [className])}
       >
         ProfilePage
-        {/* <VStack gap="16" max> */}
-        {/* <EditableProfileCard id={id} /> */}
-        {/* </VStack> */}
       </div>
     </DynamicModuleLoader>
   );
