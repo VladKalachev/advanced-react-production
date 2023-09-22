@@ -1,6 +1,8 @@
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
 import { ThemeDecorator } from "@/shared/config/storybook/ThemeDecorator/ThemeDecorator";
-import { Button, ButtonTheme, ButtonSize } from "./Button";
-import { Story, Meta } from "@storybook/react/types-6-0";
+import { Button, ButtonSize, ButtonTheme } from "./Button";
 import { Theme } from "@/shared/const/theme";
 
 export default {
@@ -9,9 +11,9 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} as Meta<typeof Button>;
+} as ComponentMeta<typeof Button>;
 
-const Template: Story<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -19,7 +21,6 @@ Primary.args = {
 };
 
 export const Clear = Template.bind({});
-
 Clear.args = {
   children: "Text",
   theme: ButtonTheme.CLEAR,
