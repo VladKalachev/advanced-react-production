@@ -29,7 +29,6 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
     this.dispatch = jest.fn();
     this.getState = jest.fn(() => state as StateSchema);
 
-    // @ts-ignore
     this.api = mockedAxios;
     this.navigate = jest.fn();
   }
