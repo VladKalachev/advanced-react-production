@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { getProfileData } from "../../model/selectors/getProfileData/getProfileData";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
-import { Text, TextTheme } from "@/shared/ui/Text";
+import { Text, TextAlign, TextTheme } from "@/shared/ui/Text";
 import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
@@ -26,8 +26,25 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   if (isLoading) {
     return (
-      <div className={classNames(cls.ProfileCard, {}, [className])}>
+      <div
+        className={classNames(cls.ProfileCard, { [cls.loading]: true }, [
+          className,
+        ])}
+      >
         <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+        <Text
+          theme={TextTheme.ERROR}
+          title={t("Произошла ошибка при загрузке профиля")}
+          text={t("Попробуйте обновить страницу")}
+          align={TextAlign.CENTER}
+        />
       </div>
     );
   }
