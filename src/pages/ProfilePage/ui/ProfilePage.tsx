@@ -4,10 +4,18 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { ProfileCard, profileReducer } from "@/entities/Profile";
+import {
+  getProfileData,
+  getProfileError,
+  getProfileIsLoading,
+  ProfileCard,
+  profileReducer,
+} from "@/entities/Profile";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useEffect } from "react";
 import { fetchProfileData } from "@/entities/Profile";
+import { useSelector } from "react-redux";
+
 // import { Page } from "@/widgets/Page";
 // import { VStack } from '@/shared/ui/redesigned/Stack';
 // import { EditableProfileCard } from "@/features/editableProfileCard";
@@ -23,6 +31,10 @@ const reducers: ReducersList = {
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const { id } = useParams<{ id: string }>();
 
+  const data = useSelector(getProfileData);
+  const isLoading = useSelector(getProfileIsLoading);
+  const error = useSelector(getProfileError);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -35,7 +47,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         data-testid="ProfilePage"
         className={classNames("", {}, [className])}
       >
-        <ProfileCard />
+        <ProfileCard data={data} isLoading={isLoading} error={error} />
       </div>
     </DynamicModuleLoader>
   );

@@ -9,6 +9,7 @@ import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
+import { Loader } from "@/shared/ui/Loader";
 
 export interface ProfileCardProps {
   className?: string;
@@ -18,12 +19,18 @@ export interface ProfileCardProps {
   readonly?: boolean;
 }
 
-export const ProfileCard = ({ className }: ProfileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
+  const { className, data, isLoading, error } = props;
+
   const { t } = useTranslation("profile");
 
-  const data = useSelector(getProfileData);
-  const isLoading = useSelector(getProfileIsLoading);
-  const error = useSelector(getProfileError);
+  if (isLoading) {
+    return (
+      <div className={classNames(cls.ProfileCard, {}, [className])}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(cls.ProfileCard, {}, [className])}>
