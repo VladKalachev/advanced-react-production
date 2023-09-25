@@ -16,10 +16,6 @@ import { useEffect } from "react";
 import { fetchProfileData } from "@/entities/Profile";
 import { useSelector } from "react-redux";
 
-// import { Page } from "@/widgets/Page";
-// import { VStack } from '@/shared/ui/redesigned/Stack';
-// import { EditableProfileCard } from "@/features/editableProfileCard";
-
 interface ProfilePageProps {
   className?: string;
 }
