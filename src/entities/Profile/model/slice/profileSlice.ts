@@ -16,14 +16,14 @@ export const profileSlice = createSlice({
     setReadonly: (state, action: PayloadAction<boolean>) => {
       state.readonly = action.payload;
     },
-    // cancelEdit: (state) => {
-    //   state.readonly = true;
-    //   state.validateErrors = undefined;
-    //   state.form = state.data;
-    // },
+    cancelEdit: (state) => {
+      state.readonly = true;
+      // state.validateErrors = undefined;
+      state.form = state.data;
+    },
     updateProfile: (state, action: PayloadAction<Profile>) => {
-      state.data = {
-        ...state.data,
+      state.form = {
+        ...state.form,
         ...action.payload,
       };
     },
