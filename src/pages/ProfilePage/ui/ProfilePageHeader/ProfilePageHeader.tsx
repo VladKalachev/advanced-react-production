@@ -1,7 +1,11 @@
+import { getProfileReadonly, profileActions } from "@/entities/Profile";
 import { classNames } from "@/shared/lib/classNames/classNames";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Text } from "@/shared/ui/Text";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import cls from "./ProfilePageHeader.module.scss";
 
 interface ProfilePageHeader {
@@ -11,14 +15,38 @@ interface ProfilePageHeader {
 export const ProfilePageHeader = (props: ProfilePageHeader) => {
   const { className } = props;
   const { t } = useTranslation("profile");
+
+  const readonly = useSelector(getProfileReadonly);
+  const dispatch = useAppDispatch();
+
+  const onEdit = useCallback(() => {
+    dispatch(profileActions.setReadonly(false));
+  }, [dispatch]);
+
+  const onCancelEdit = useCallback(() => {
+    dispatch(profileActions.setReadonly(true));
+  }, [dispatch]);
+
   return (
     <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-      <div className={cls.header}>
-        <Text title={t("Профиль")} />
-        <Button className={cls.editBtn} theme={ButtonTheme.OUTLINE}>
+      <Text title={t("Профиль")} />
+      {readonly ? (
+        <Button
+          className={cls.editBtn}
+          onClick={onEdit}
+          theme={ButtonTheme.OUTLINE}
+        >
           {t("Редактировать")}
         </Button>
-      </div>
+      ) : (
+        <Button
+          className={cls.editBtn}
+          onClick={onCancelEdit}
+          theme={ButtonTheme.OUTLINE}
+        >
+          {t("Отменить")}
+        </Button>
+      )}
     </div>
   );
 };

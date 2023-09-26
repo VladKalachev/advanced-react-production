@@ -17,10 +17,20 @@ export interface ProfileCardProps {
   error?: string;
   isLoading?: boolean;
   readonly?: boolean;
+  onChangeLastName: (name: string) => void;
+  onChangeFirstName: (name: string) => void;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
-  const { className, data, isLoading, error } = props;
+  const {
+    className,
+    data,
+    isLoading,
+    error,
+    onChangeFirstName,
+    onChangeLastName,
+    readonly,
+  } = props;
 
   const { t } = useTranslation("profile");
 
@@ -51,22 +61,20 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   return (
     <div className={classNames(cls.ProfileCard, {}, [className])}>
-      <div className={cls.header}>
-        <Text title={t("Профиль")} />
-        <Button className={cls.editBtn} theme={ButtonTheme.OUTLINE}>
-          {t("Редактировать")}
-        </Button>
-      </div>
       <div className={cls.data}>
         <Input
           value={data?.first}
           placeholder={t("Ваше имя")}
           className={cls.input}
+          onChange={onChangeFirstName}
+          readonly={readonly}
         />
         <Input
           value={data?.lastname}
           placeholder={t("Ваша фамилия")}
           className={cls.input}
+          onChange={onChangeLastName}
+          readonly={readonly}
         />
       </div>
     </div>
