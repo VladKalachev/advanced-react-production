@@ -43,7 +43,6 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
   const onChangeFirstName = useCallback(
     (value?: string) => {
-      console.log("onChangeFirstName", value);
       dispatch(profileActions.updateProfile({ first: value || "" }));
     },
     [dispatch]
