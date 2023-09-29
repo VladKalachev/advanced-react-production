@@ -70,6 +70,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={classNames(cls.ProfileCard, {}, [className])}>
       <div className={cls.data}>
+        {data?.avatar && <img src={data?.avatar} />}
         <Input
           value={data?.first}
           placeholder={t("Ваше имя")}

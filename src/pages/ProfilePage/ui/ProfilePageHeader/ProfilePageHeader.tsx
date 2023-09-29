@@ -1,4 +1,8 @@
-import { getProfileReadonly, profileActions } from "@/entities/Profile";
+import {
+  getProfileReadonly,
+  profileActions,
+  updateProfileData,
+} from "@/entities/Profile";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
@@ -28,7 +32,7 @@ export const ProfilePageHeader = (props: ProfilePageHeader) => {
   }, [dispatch]);
 
   const onSave = useCallback(() => {
-    dispatch(profileActions.cancelEdit());
+    dispatch(updateProfileData());
   }, [dispatch]);
 
   return (
