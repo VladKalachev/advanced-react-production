@@ -12,8 +12,8 @@ import { Input } from "@/shared/ui/Input";
 import { Loader } from "@/shared/ui/Loader";
 import { Avatar } from "@/shared/ui/Avatar";
 import { Select } from "@/shared/ui/Select";
-import { Currency } from "@/entities/Currency";
-import { Country } from "@/entities/Country";
+import { Currency, CurrencySelect } from "@/entities/Currency";
+import { Country, CountrySelect } from "@/entities/Country";
 
 export interface ProfileCardProps {
   className?: string;
@@ -130,13 +130,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
           onChange={onChangeAvatar}
           readonly={readonly}
         />
-        <Select
+        <CurrencySelect
           className={cls.input}
           value={data?.currency}
           onChange={onChangeCurrency}
           readonly={readonly}
         />
-        <Select
+        <CountrySelect
           className={cls.input}
           value={data?.country}
           onChange={onChangeCountry}
