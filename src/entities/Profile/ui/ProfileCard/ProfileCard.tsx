@@ -1,4 +1,4 @@
-import { classNames } from "@/shared/lib/classNames/classNames";
+import { classNames, Mods } from "@/shared/lib/classNames/classNames";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getProfileData } from "../../model/selectors/getProfileData/getProfileData";
@@ -10,6 +10,7 @@ import cls from "./ProfileCard.module.scss";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Loader } from "@/shared/ui/Loader";
+import { Avatar } from "@/shared/ui/Avatar";
 
 export interface ProfileCardProps {
   className?: string;
@@ -67,10 +68,19 @@ export const ProfileCard = (props: ProfileCardProps) => {
     );
   }
 
+  const mods: Mods = {
+    [cls.editing]: !readonly,
+  };
+
   return (
-    <div className={classNames(cls.ProfileCard, {}, [className])}>
+    <div className={classNames(cls.ProfileCard, mods, [className])}>
       <div className={cls.data}>
-        {data?.avatar && <img src={data?.avatar} />}
+        {data?.avatar && (
+          <div className={cls.avatarWrapper}>
+            <Avatar src={data?.avatar} />
+          </div>
+        )}
+
         <Input
           value={data?.first}
           placeholder={t("Ваше имя")}
