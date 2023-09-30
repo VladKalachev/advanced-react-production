@@ -89,6 +89,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
     "cors": "^2.8.5",

@@ -11,6 +11,9 @@ import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Loader } from "@/shared/ui/Loader";
 import { Avatar } from "@/shared/ui/Avatar";
+import { Select } from "@/shared/ui/Select";
+import { Currency } from "@/entities/Currency";
+import { Country } from "@/entities/Country";
 
 export interface ProfileCardProps {
   className?: string;
@@ -24,6 +27,8 @@ export interface ProfileCardProps {
   onChangeAge?: (value?: string) => void;
   onChangeUsername?: (value?: string) => void;
   onChangeAvatar?: (value?: string) => void;
+  onChangeCurrency?: (currency: Currency) => void;
+  onChangeCountry?: (country: Country) => void;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -32,13 +37,15 @@ export const ProfileCard = (props: ProfileCardProps) => {
     data,
     isLoading,
     error,
+    readonly,
     onChangeFirstName,
     onChangeLastName,
     onChangeAge,
     onChangeCity,
     onChangeAvatar,
     onChangeUsername,
-    readonly,
+    onChangeCountry,
+    onChangeCurrency,
   } = props;
 
   const { t } = useTranslation("profile");
@@ -121,6 +128,18 @@ export const ProfileCard = (props: ProfileCardProps) => {
           placeholder={t("Введите ссылку на аватар")}
           className={cls.input}
           onChange={onChangeAvatar}
+          readonly={readonly}
+        />
+        <Select
+          className={cls.input}
+          value={data?.currency}
+          onChange={onChangeCurrency}
+          readonly={readonly}
+        />
+        <Select
+          className={cls.input}
+          value={data?.country}
+          onChange={onChangeCountry}
           readonly={readonly}
         />
       </div>

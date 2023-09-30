@@ -1,5 +1,6 @@
 import { StateSchema } from "@/app/providers/StoreProvider";
-import { Country, Currency } from "@/entities/Profile";
+import { Country } from "@/entities/Country";
+import { Currency } from "@/entities/Currency";
 
 import { getProfileForm } from "./getProfileForm";
 
