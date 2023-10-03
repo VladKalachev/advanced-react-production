@@ -9,6 +9,7 @@ import {
   getProfileForm,
   getProfileIsLoading,
   getProfileReadonly,
+  getProfileValidateErrors,
   profileActions,
   ProfileCard,
   profileReducer,
@@ -20,6 +21,9 @@ import { useSelector } from "react-redux";
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 import { Currency } from "@/entities/Currency";
 import { Country } from "@/entities/Country";
+import { TextTheme, Text } from "@/shared/ui/Text";
+import { ValidateProfileError } from "@/entities/Profile/model/consts/consts";
+import { useTranslation } from "react-i18next";
 
 interface ProfilePageProps {
   className?: string;
@@ -31,13 +35,22 @@ const reducers: ReducersList = {
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation("profile");
 
+  const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
+  const validateErrors = useSelector(getProfileValidateErrors);
 
-  const dispatch = useAppDispatch();
+  const validateErrorTranslates = {
+    [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
+    [ValidateProfileError.INCORRECT_COUNTRY]: t("Некорректный регион"),
+    [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
+    [ValidateProfileError.INCORRECT_USER_DATA]: t("Имя и фамилия обязательны"),
+    [ValidateProfileError.INCORRECT_AGE]: t("Некорректный возраст"),
+  };
 
   useEffect(() => {
     dispatch(fetchProfileData());
@@ -106,6 +119,15 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         className={classNames("", {}, [className])}
       >
         <ProfilePageHeader />
+        {validateErrors?.length &&
+          validateErrors.map((err) => (
+            <Text
+              key={err}
+              theme={TextTheme.ERROR}
+              text={validateErrorTranslates[err]}
+              data-testid="EditableProfileCard.Error"
+            />
+          ))}
         <ProfileCard
           data={formData}
           isLoading={isLoading}
