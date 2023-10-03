@@ -1,5 +1,6 @@
 import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
+import { ValidateProfileError } from "../consts/consts";
 
 export interface Profile {
   id?: string;
@@ -19,5 +20,5 @@ export interface ProfileSchema {
   isLoading: boolean;
   error?: string;
   readonly: boolean;
-  // validateErrors?: ValidateProfileError[];
+  validateErrors?: ValidateProfileError[];
 }
