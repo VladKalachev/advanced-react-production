@@ -6,7 +6,7 @@ interface ArticleDetailsPageProps {
   className?: string;
 }
 
-export const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
+const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const [t] = useTranslation("article");
   return (
     <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
@@ -14,3 +14,5 @@ export const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     </div>
   );
 };
+
+export default ArticleDetailsPage;
