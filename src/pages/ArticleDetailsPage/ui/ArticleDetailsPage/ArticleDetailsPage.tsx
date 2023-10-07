@@ -1,4 +1,5 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import cls from "./ArticleDetailsPage.module.scss";
 
@@ -15,4 +16,4 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   );
 };
 
-export default ArticleDetailsPage;
+export default memo(ArticleDetailsPage);
