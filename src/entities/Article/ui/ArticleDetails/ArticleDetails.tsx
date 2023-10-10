@@ -28,6 +28,34 @@ const reducers: ReducersList = {
   articleDetails: articleDetailsReducer,
 };
 
+const Deprecated = () => {
+  const article = useSelector(getArticleDetailsData);
+  return (
+    <>
+      {/* <div justify="center" max className={cls.avatarWrapper}>
+              <Avatar size={200} src={article?.img} className={cls.avatar} />
+          </div>
+          <VStack gap="4" max data-testid="ArticleDetails.Info">
+              <TextDeprecated
+                  className={cls.title}
+                  title={article?.title}
+                  text={article?.subtitle}
+                  size={TextSize.L}
+              />
+              <HStack gap="8" className={cls.articleInfo}>
+                  <Icon className={cls.icon} Svg={EyeIcon} />
+                  <TextDeprecated text={String(article?.views)} />
+              </HStack>
+              <HStack gap="8" className={cls.articleInfo}>
+                  <Icon className={cls.icon} Svg={CalendarIcon} />
+                  <TextDeprecated text={article?.createdAt} />
+              </HStack>
+          </VStack>
+          {article?.blocks.map(renderArticleBlock)} */}
+    </>
+  );
+};
+
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const { className, id } = props;
   const { t } = useTranslation();
@@ -43,7 +71,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
   if (isLoading) {
     content = (
-      <div>
+      <>
         <Skeleton
           className={cls.avatar}
           width={200}
@@ -54,7 +82,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         <Skeleton className={cls.skeleton} width={600} height={24} />
         <Skeleton className={cls.skeleton} width="100%" height={200} />
         <Skeleton className={cls.skeleton} width="100%" height={200} />
-      </div>
+      </>
     );
   } else if (error) {
     content = (
@@ -64,6 +92,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
       />
     );
   } else {
+    content = <></>;
     // content = (
     //   <ToggleFeatures
     //     feature="isAppRedesigned"
