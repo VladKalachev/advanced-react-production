@@ -9,6 +9,7 @@ import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetails
 import { useParams } from "react-router-dom";
 import { articleDetailsPageReducer } from "../../model/slices";
 import cls from "./ArticleDetailsPage.module.scss";
+import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 
 interface ArticleDetailsPageProps {
   className?: string;

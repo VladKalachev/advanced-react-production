@@ -14,6 +14,7 @@ import { getArticleComments } from "../../model/slices/articleDetailsCommentsSli
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 
 interface ArticleDetailsCommentsProps {
   className?: string;
@@ -35,9 +36,9 @@ export const ArticleDetailsComments = memo(
       [dispatch]
     );
 
-    // useInitialEffect(() => {
-    //   dispatch(fetchCommentsByArticleId(id));
-    // });
+    useInitialEffect(() => {
+      dispatch(fetchCommentsByArticleId(id));
+    });
 
     return (
       <div className={classNames("", {}, [className])}>
