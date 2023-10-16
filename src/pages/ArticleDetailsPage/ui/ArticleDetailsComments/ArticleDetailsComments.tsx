@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Text, TextSize } from "@/shared/ui//Text";
 
-// import { AddCommentForm } from "@/features/addCommentForm";
+import { AddCommentForm } from "@/features/addCommentForm";
 import { CommentList } from "@/entities/Comment";
-// import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 
 import { Loader } from "@/shared/ui/Loader";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
@@ -44,7 +43,7 @@ export const ArticleDetailsComments = memo(
       <div className={classNames("", {}, [className])}>
         <Text size={TextSize.L} title={t("Комментарии")} />
         <Suspense fallback={<Loader />}>
-          {/* <AddCommentForm onSendComment={onSendComment} /> */}
+          <AddCommentForm onSendComment={onSendComment} />
         </Suspense>
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </div>
