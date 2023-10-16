@@ -24,6 +24,7 @@ import { Country } from "@/entities/Country";
 import { TextTheme, Text } from "@/shared/ui/Text";
 import { ValidateProfileError } from "@/entities/Profile/model/consts/consts";
 import { useTranslation } from "react-i18next";
+import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 
 interface ProfilePageProps {
   className?: string;
@@ -52,9 +53,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     [ValidateProfileError.INCORRECT_AGE]: t("Некорректный возраст"),
   };
 
-  useEffect(() => {
-    dispatch(fetchProfileData());
-  }, [dispatch]);
+  useInitialEffect(() => {
+    if (id) {
+      dispatch(fetchProfileData(id));
+    }
+  });
 
   const onChangeFirstName = useCallback(
     (value?: string) => {
