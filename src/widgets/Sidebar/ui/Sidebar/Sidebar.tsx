@@ -6,8 +6,9 @@ import { LangSwitcher } from "@/widgets/LangSwitcher";
 import { Button } from "@/shared/ui/Button";
 import { ButtonSize, ButtonTheme } from "@/shared/ui/Button/Button";
 
-import { sidebarItemsList } from "../../model/items";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
+
+import { useSidebarItems } from "../../model/selectors/getSidebarItems";
 
 interface SidebarProps {
   className?: string;
@@ -15,6 +16,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const sidebarItemsList = useSidebarItems();
 
   const onToggle = () => {
     setCollapsed((prev) => !prev);
