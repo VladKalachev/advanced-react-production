@@ -9,7 +9,11 @@ import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetails
 import { useParams } from "react-router-dom";
 import { articleDetailsPageReducer } from "../../model/slices";
 import cls from "./ArticleDetailsPage.module.scss";
-import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
+
+import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
+import { VStack } from "@/shared/ui/Stack";
+import { Card } from "@/shared/ui/Card";
+import { useTranslation } from "react-i18next";
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -21,6 +25,7 @@ const reducers: ReducersList = {
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation("article-details");
 
   if (!id) {
     return null;
@@ -29,8 +34,12 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        <ArticleDetails id={id} />
-        <ArticleDetailsComments id={id} />
+        <VStack gap="16" max>
+          <ArticleDetailsPageHeader />
+          <ArticleDetails id={id} />
+          <Card>{t("Оценка статей скоро появится!")}</Card>
+          <ArticleDetailsComments id={id} />
+        </VStack>
       </div>
     </DynamicModuleLoader>
   );
