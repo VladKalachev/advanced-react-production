@@ -202,7 +202,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
       <ArticleList
         isLoading={isLoading}
         view={view}
-        articles={data}
+        articles={articles}
         className={className}
       />
     </div>
