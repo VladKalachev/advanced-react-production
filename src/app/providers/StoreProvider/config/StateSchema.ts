@@ -5,7 +5,8 @@ import { UserSchema } from "@/entities/User";
 import { AddCommentFormSchema } from "@/features/addCommentForm";
 import { LoginSchema } from "@/features/AuthByUsername";
 import { ArticleDetailsPageSchema } from "@/pages/ArticleDetailsPage";
-import { ArticlesPageSchema } from "@/pages/ArticlesPage/model/types/articlesPageSchema";
+import { ArticlesPageSchema } from "@/pages/ArticlesPage";
+
 import {
   AnyAction,
   CombinedState,
