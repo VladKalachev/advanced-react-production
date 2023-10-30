@@ -25,6 +25,7 @@ import { TextTheme, Text } from "@/shared/ui/Text";
 import { ValidateProfileError } from "@/entities/Profile/model/consts/consts";
 import { useTranslation } from "react-i18next";
 import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
+import { Page } from "@/widgets/Page";
 
 interface ProfilePageProps {
   className?: string;
@@ -118,7 +119,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div
+      <Page
         data-testid="ProfilePage"
         className={classNames("", {}, [className])}
       >
@@ -146,7 +147,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           onChangeCurrency={onChangeCurrency}
           onChangeCountry={onChangeCountry}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };

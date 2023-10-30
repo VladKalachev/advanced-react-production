@@ -24,6 +24,10 @@ import {
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { ArticleViewSelector } from "@/features/ArticleViewSelector";
 import { ArticleView } from "@/entities/Article";
+import { Page } from "@/widgets/Page";
+import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
+import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
+import { useSearchParams } from "react-router-dom";
 
 interface ArticlesPageProps {
   className?: string;
@@ -40,6 +44,8 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const view = useSelector(getArticlesPageView);
   const error = useSelector(getArticlesPageError);
 
+  const [searchParams] = useSearchParams();
+
   const dispatch = useAppDispatch();
 
   const onChangeView = useCallback(
@@ -49,8 +55,12 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     [dispatch]
   );
 
+  const onLoadNextPart = useCallback(() => {
+    dispatch(fetchNextArticlesPage());
+  }, [dispatch]);
+
   useInitialEffect(() => {
-    dispatch(fetchArticlesList({ replace: true }));
+    dispatch(initArticlesPage(searchParams));
   });
 
   if (error) {
@@ -59,7 +69,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-      <div className={classNames(cls.ArticlesPage, {}, [className])}>
+      <Page
+        data-testid="ArticlesPage"
+        onScrollEnd={onLoadNextPart}
+        className={classNames(cls.ArticlesPage, {}, [className])}
+      >
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList
           isLoading={isLoading}
@@ -67,7 +81,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
           articles={articles}
           className={className}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };

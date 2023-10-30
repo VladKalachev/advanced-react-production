@@ -1,6 +1,7 @@
 import { counterReducer } from "@/entities/Counter";
 import { userReducer } from "@/entities/User";
 import { loginReducer } from "@/features/AuthByUsername/model/slice/loginSlice";
+import { uiReducer } from "@/features/UI";
 import { $api } from "@/shared/api/api";
 import {
   CombinedState,
@@ -15,20 +16,19 @@ import type { StateSchema, ThunkExtraArg } from "./StateSchema";
 
 export function createReduxStore(
   initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>,
-  navigate?: (to: To, options?: NavigateOptions) => void
+  asyncReducers?: ReducersMapObject<StateSchema>
 ) {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
+    ui: uiReducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);
 
   const extraArg: ThunkExtraArg = {
     api: $api,
-    navigate,
   };
 
   const store = configureStore({

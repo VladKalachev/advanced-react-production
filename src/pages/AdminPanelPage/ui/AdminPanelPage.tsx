@@ -1,5 +1,7 @@
+import { Page } from "@/widgets/Page";
+
 const AdminPanelPage = () => {
-  return <div>AdminPanelPage</div>;
+  return <Page>AdminPanelPage</Page>;
 };
 
 export default AdminPanelPage;
