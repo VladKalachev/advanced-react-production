@@ -9,6 +9,8 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+// import { AboutPage } from "@/pages/AboutPage";
+
 import { HStack } from "@/shared/ui/Stack";
 import {
   addCommentFormActions,
