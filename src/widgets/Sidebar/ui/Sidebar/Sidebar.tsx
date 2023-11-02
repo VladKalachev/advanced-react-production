@@ -9,6 +9,7 @@ import { ButtonSize, ButtonTheme } from "@/shared/ui/Button/Button";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 
 import { useSidebarItems } from "../../model/selectors/getSidebarItems";
+import { VStack } from "@/shared/ui/Stack";
 
 interface SidebarProps {
   className?: string;
@@ -33,9 +34,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   return (
     <div
       data-testid="sidebar"
-      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-        className,
-      ])}
+      className={classNames(
+        cls.Sidebar,
+        { [cls.collapsedRedesigned]: collapsed },
+        [className]
+      )}
     >
       <Button
         data-testid="sidebar-toggle"
@@ -47,7 +50,9 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       >
         {collapsed ? ">" : "<"}
       </Button>
-      <div className={cls.items}>{itemsList}</div>
+      <VStack gap="8" className={cls.items}>
+        {itemsList}
+      </VStack>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher short={collapsed} className={cls.lang} />

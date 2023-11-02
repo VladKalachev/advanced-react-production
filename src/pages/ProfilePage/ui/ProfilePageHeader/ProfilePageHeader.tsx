@@ -8,11 +8,11 @@ import { getUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { HStack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import cls from "./ProfilePageHeader.module.scss";
 
 interface ProfilePageHeader {
   className?: string;
@@ -42,38 +42,26 @@ export const ProfilePageHeader = (props: ProfilePageHeader) => {
   }, [dispatch]);
 
   return (
-    <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
+    <HStack justify="between" className={classNames("", {}, [className])}>
       <Text title={t("Профиль")} />
       {canEdit && (
-        <div>
+        <>
           {readonly ? (
-            <Button
-              className={cls.editBtn}
-              onClick={onEdit}
-              theme={ButtonTheme.OUTLINE}
-            >
+            <Button onClick={onEdit} theme={ButtonTheme.OUTLINE}>
               {t("Редактировать")}
             </Button>
           ) : (
-            <>
-              <Button
-                className={cls.editBtn}
-                onClick={onCancelEdit}
-                theme={ButtonTheme.OUTLINE_RED}
-              >
+            <HStack gap="8">
+              <Button onClick={onCancelEdit} theme={ButtonTheme.OUTLINE_RED}>
                 {t("Отменить")}
               </Button>
-              <Button
-                className={cls.saveBtn}
-                onClick={onSave}
-                theme={ButtonTheme.OUTLINE}
-              >
+              <Button onClick={onSave} theme={ButtonTheme.OUTLINE}>
                 {t("Сохранить")}
               </Button>
-            </>
+            </HStack>
           )}
-        </div>
+        </>
       )}
-    </div>
+    </HStack>
   );
 };
