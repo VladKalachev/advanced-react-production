@@ -26,6 +26,7 @@ import { ValidateProfileError } from "@/entities/Profile/model/consts/consts";
 import { useTranslation } from "react-i18next";
 import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { Page } from "@/widgets/Page";
+import { HStack, VStack } from "@/shared/ui/Stack";
 
 interface ProfilePageProps {
   className?: string;
@@ -123,30 +124,32 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         data-testid="ProfilePage"
         className={classNames("", {}, [className])}
       >
-        <ProfilePageHeader />
-        {validateErrors?.length &&
-          validateErrors.map((err) => (
-            <Text
-              key={err}
-              theme={TextTheme.ERROR}
-              text={validateErrorTranslates[err]}
-              data-testid="EditableProfileCard.Error"
-            />
-          ))}
-        <ProfileCard
-          data={formData}
-          isLoading={isLoading}
-          error={error}
-          readonly={readonly}
-          onChangeFirstName={onChangeFirstName}
-          onChangeLastName={onChangeLastName}
-          onChangeCity={onChangeCity}
-          onChangeAge={onChangeAge}
-          onChangeUsername={onChangeUsername}
-          onChangeAvatar={onChangeAvatar}
-          onChangeCurrency={onChangeCurrency}
-          onChangeCountry={onChangeCountry}
-        />
+        <VStack max gap="16">
+          <ProfilePageHeader />
+          {validateErrors?.length &&
+            validateErrors.map((err) => (
+              <Text
+                key={err}
+                theme={TextTheme.ERROR}
+                text={validateErrorTranslates[err]}
+                data-testid="EditableProfileCard.Error"
+              />
+            ))}
+          <ProfileCard
+            data={formData}
+            isLoading={isLoading}
+            error={error}
+            readonly={readonly}
+            onChangeFirstName={onChangeFirstName}
+            onChangeLastName={onChangeLastName}
+            onChangeCity={onChangeCity}
+            onChangeAge={onChangeAge}
+            onChangeUsername={onChangeUsername}
+            onChangeAvatar={onChangeAvatar}
+            onChangeCurrency={onChangeCurrency}
+            onChangeCountry={onChangeCountry}
+          />
+        </VStack>
       </Page>
     </DynamicModuleLoader>
   );
