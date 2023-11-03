@@ -96,6 +96,18 @@ const config: Config = {
     "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx"),
     "^@/(.*)$": "<rootDir>/src/$1",
   },
+  reporters: [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        publicPath: "<rootDir>/reports/unit",
+        filename: "report.html",
+        // openReport: true,
+        inlineSource: true,
+      },
+    ],
+  ],
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],

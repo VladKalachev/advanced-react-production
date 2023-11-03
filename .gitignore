@@ -14,5 +14,7 @@ yarn.lock
 .vscode
 .idea
 
+
+/reports
 /coverage
 storybook-static

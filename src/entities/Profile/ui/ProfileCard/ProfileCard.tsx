@@ -1,9 +1,6 @@
 import { classNames, Mods } from "@/shared/lib/classNames/classNames";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getProfileData } from "../../model/selectors/getProfileData/getProfileData";
-import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
-import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
+
 import { Text, TextAlign, TextTheme } from "@/shared/ui/Text";
 import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";
@@ -11,7 +8,7 @@ import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Loader } from "@/shared/ui/Loader";
 import { Avatar } from "@/shared/ui/Avatar";
-import { Select } from "@/shared/ui/Select";
+
 import { Currency, CurrencySelect } from "@/entities/Currency";
 import { Country, CountrySelect } from "@/entities/Country";
 import { HStack, VStack } from "@/shared/ui/Stack";

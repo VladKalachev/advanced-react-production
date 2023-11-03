@@ -43,7 +43,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
 
-  const validateErrorTranslates = {
+  const validateErrorTranslates: any = {
     [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
     [ValidateProfileError.INCORRECT_COUNTRY]: t("Некорректный регион"),
     [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
@@ -118,7 +118,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
       <VStack gap="16" max className={classNames("", {}, [className])}>
         <EditableProfileCardHeader />
         {validateErrors?.length &&
-          validateErrors.map((err) => (
+          validateErrors.map((err: any) => (
             <Text
               key={err}
               theme={TextTheme.ERROR}

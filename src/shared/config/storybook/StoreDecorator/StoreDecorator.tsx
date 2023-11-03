@@ -3,7 +3,7 @@ import { StateSchema, StoreProvider } from "@/app/providers/StoreProvider";
 
 import { ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { loginReducer } from "@/features/AuthByUsername/model/slice/loginSlice";
-import { profileReducer } from "@/entities/Profile";
+import { profileReducer } from "@/features/editableProfileCard/testing";
 import { articleDetailsReducer } from "@/entities/Article/model/slice/articleDetailsSlice";
 
 const defaultAsyncReducers: ReducersList = {
