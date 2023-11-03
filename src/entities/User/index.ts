@@ -10,4 +10,4 @@ export {
 
 export { getUserAuthData } from "./model/selectors/getUserAuthData/getUserAuthData";
 export { getUserInited } from "./model/selectors/getUserInited/getUserInited";
-export type { UserRole } from "./model/consts/userConsts";
+export { UserRole } from "./model/consts/userConsts";
