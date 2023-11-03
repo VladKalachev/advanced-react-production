@@ -11,6 +11,10 @@ import { getUserAuthData } from "@/entities/User/model/selectors/getUserAuthData
 import { userActions } from "@/entities/User";
 import { TextTheme, Text } from "@/shared/ui/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink";
+import { AvatarDropdown } from "@/features/avatarDropdown";
+import { getRouteArticleCreate } from "@/shared/const/router";
+import { HStack } from "@/shared/ui/Stack";
+import { NotificationButton } from "@/features/notificationButton";
 
 interface NavbarProps {
   className?: string;
@@ -35,17 +39,28 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     dispatch(userActions.logout);
   }, [dispatch]);
 
-  if (authData) {
+  const mainClass = cls.Navbar;
+
+  if (!authData) {
     return (
-      <div className={classNames(cls.Navbar, {}, [className])}>
-        <Button
-          theme={ButtonTheme.CLEAR_INVERTED}
-          className={cls.links}
-          onClick={onLogout}
+      <header className={classNames(mainClass, {}, [className])}>
+        <Text
+          className={cls.appName}
+          title={t("Ulbi TV App")}
+          theme={TextTheme.INVERTED}
+        />
+        <AppLink
+          to={getRouteArticleCreate()}
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.createBtn}
         >
-          {t("Выйти")}
-        </Button>
-      </div>
+          {t("Создать статью")}
+        </AppLink>
+        <HStack gap="16" className={cls.actions}>
+          <NotificationButton />
+          <AvatarDropdown />
+        </HStack>
+      </header>
     );
   }
 
