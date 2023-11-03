@@ -57,7 +57,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           {t("Создать статью")}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
-          <NotificationButton />
+          {/* <NotificationButton /> */}
           <AvatarDropdown />
         </HStack>
       </header>
