@@ -80,37 +80,37 @@ export const ArticleList = memo((props: ArticleListProps) => {
     );
   }
 
-  return (
-    <WindowScroller scrollElement={document.getElementById(PAGE_ID) as Element}>
-      {({
-        width,
-        height,
-        registerChild,
-        onChildScroll,
-        isScrolling,
-        scrollTop,
-      }) => (
-        <div
-          ref={registerChild as any}
-          className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-          data-testid="ArticleList"
-        >
-          <List
-            height={height ?? 700}
-            rowCount={rowCount}
-            rowHeight={isBig ? 700 : 330}
-            rowRenderer={rowRenderer}
-            width={width ? width - 80 : 700}
-            autoHeight
-            onScroll={onChildScroll}
-            isScrolling={isScrolling}
-            scrollTop={scrollTop}
-          />
-          {isLoading && getSkeletons(view)}
-        </div>
-      )}
-    </WindowScroller>
-  );
+  // return (
+  //   <WindowScroller scrollElement={document.getElementById(PAGE_ID) as Element}>
+  //     {({
+  //       width,
+  //       height,
+  //       registerChild,
+  //       onChildScroll,
+  //       isScrolling,
+  //       scrollTop,
+  //     }) => (
+  //       <div
+  //         ref={registerChild as any}
+  //         className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+  //         data-testid="ArticleList"
+  //       >
+  //         <List
+  //           height={height ?? 700}
+  //           rowCount={rowCount}
+  //           rowHeight={isBig ? 700 : 330}
+  //           rowRenderer={rowRenderer}
+  //           width={width ? width - 80 : 700}
+  //           autoHeight
+  //           onScroll={onChildScroll}
+  //           isScrolling={isScrolling}
+  //           scrollTop={scrollTop}
+  //         />
+  //         {isLoading && getSkeletons(view)}
+  //       </div>
+  //     )}
+  //   </WindowScroller>
+  // );
 
   return (
     <div

@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "strict": true,
     "baseUrl": ".",
+    "types": ["vite-plugin-svgr/client"],
     // Если какая-либо библиотека не имеет default import,
     // лоадеры вроде ts-loader или babel-loader автоматически создают их
     // вместо такого импорта
