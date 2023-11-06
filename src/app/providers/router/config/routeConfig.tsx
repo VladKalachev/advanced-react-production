@@ -8,7 +8,7 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
-import type { AppRoutesProps } from '@/shared/types/router';
+import { AppRoutesProps } from '@/shared/types/router';
 import { AppRoutes, RoutePath } from '@/shared/const/router';
 
 export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
