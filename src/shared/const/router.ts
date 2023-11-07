@@ -40,27 +40,27 @@ export const getRouteAdmin = () => "/admin";
 export const getRouteForbidden = () => "/forbidden";
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.MAIN]: "/",
-  [AppRoutes.ABOUT]: "/about",
-  [AppRoutes.PROFILE]: "/profile/", // :id
-  [AppRoutes.ARTICLES]: "/articles",
-  [AppRoutes.ARTICLE_DETAILS]: "/articles/", // :id
-  [AppRoutes.ARTICLE_CREATE]: "/articles/new",
-  [AppRoutes.ARTICLE_EDIT]: "/articles/:id/edit",
-  [AppRoutes.ADMIN_PANEL]: "/admin",
-  [AppRoutes.FORBIDDEN]: "/forbidden",
+  [AppRoutes.MAIN]: getRouteMain(),
+  [AppRoutes.ABOUT]: getRouteAbout(),
+  [AppRoutes.PROFILE]: getRouteProfile(':id'), // :id
+  [AppRoutes.ARTICLES]: getRouteArticles(),
+  [AppRoutes.ARTICLE_DETAILS]: getRouteArticleDetails(":id"), // :id
+  [AppRoutes.ARTICLE_CREATE]: getRouteArticleCreate(),
+  [AppRoutes.ARTICLE_EDIT]: getRouteArticleEdit(":id"),
+  [AppRoutes.ADMIN_PANEL]: getRouteAdmin(),
+  [AppRoutes.FORBIDDEN]: getRouteForbidden(),
   [AppRoutes.NOT_FOUND]: "*",
 };
 
-export const AppRouteByPathPattern: Record<string, AppRoutes> = {
-  [getRouteMain()]: AppRoutes.MAIN,
-  [getRouteSettings()]: AppRoutes.SETTINGS,
-  [getRouteAbout()]: AppRoutes.ABOUT,
-  [getRouteProfile(":id")]: AppRoutes.PROFILE,
-  [getRouteArticles()]: AppRoutes.ARTICLES,
-  [getRouteArticleDetails(":id")]: AppRoutes.ARTICLE_DETAILS,
-  [getRouteArticleCreate()]: AppRoutes.ARTICLE_CREATE,
-  [getRouteArticleEdit(":id")]: AppRoutes.ARTICLE_EDIT,
-  [getRouteAdmin()]: AppRoutes.ADMIN_PANEL,
-  [getRouteForbidden()]: AppRoutes.FORBIDDEN,
-};
+// export const AppRouteByPathPattern: Record<string, AppRoutes> = {
+//   [getRouteMain()]: AppRoutes.MAIN,
+//   [getRouteSettings()]: AppRoutes.SETTINGS,
+//   [getRouteAbout()]: AppRoutes.ABOUT,
+//   [getRouteProfile(":id")]: AppRoutes.PROFILE,
+//   [getRouteArticles()]: AppRoutes.ARTICLES,
+//   [getRouteArticleDetails(":id")]: AppRoutes.ARTICLE_DETAILS,
+//   [getRouteArticleCreate()]: AppRoutes.ARTICLE_CREATE,
+//   [getRouteArticleEdit(":id")]: AppRoutes.ARTICLE_EDIT,
+//   [getRouteAdmin()]: AppRoutes.ADMIN_PANEL,
+//   [getRouteForbidden()]: AppRoutes.FORBIDDEN,
+// };
