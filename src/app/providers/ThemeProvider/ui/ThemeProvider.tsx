@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import { LOCAL_STORAGE_THEME_KEY, ThemeContext } from "../lib/ThemeContext";
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 
-import { Theme } from "@/shared/const/theme";
+import { Theme } from '@/shared/const/theme';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
+import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 
 interface ThemeProviderProps {
   initialTheme?: Theme;
@@ -13,7 +14,7 @@ const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
 const ThemeProvider = (props: ThemeProviderProps) => {
   const { initialTheme, children } = props;
   const [theme, setTheme] = useState<Theme>(
-    initialTheme || fallbackTheme || Theme.LIGHT
+    initialTheme || fallbackTheme || Theme.LIGHT,
   );
 
   const [isThemeInited, setThemeInited] = useState(false);
@@ -35,7 +36,7 @@ const ThemeProvider = (props: ThemeProviderProps) => {
       theme: theme,
       setTheme: setTheme,
     }),
-    [theme]
+    [theme],
   );
 
   return (

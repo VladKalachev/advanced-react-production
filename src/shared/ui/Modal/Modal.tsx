@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import { classNames, Mods } from "@/shared/lib/classNames/classNames";
-import { useModal } from "@/shared/lib/hooks/useModal/useModal";
-import { Overlay } from "../Overlay/Overlay";
-import { Portal } from "../Portal/Portal";
+import { ReactNode } from 'react';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+import { Overlay } from '../Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
 
-import cls from "./Modal.module.scss";
-import { useTheme } from "@/app/providers/ThemeProvider";
+import cls from './Modal.module.scss';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 interface ModalProps {
   className?: string;
@@ -38,12 +38,12 @@ export const Modal = (props: ModalProps) => {
   }
 
   return (
-    <Portal element={document.getElementById("app") ?? document.body}>
+    <Portal element={document.getElementById('app') ?? document.body}>
       <div
         className={classNames(cls.Modal, mods, [
           className,
           theme,
-          "app_modal",
+          'app_modal',
           cls.modalNew,
         ])}
       >
