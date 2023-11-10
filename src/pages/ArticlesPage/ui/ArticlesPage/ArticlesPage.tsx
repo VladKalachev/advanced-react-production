@@ -1,23 +1,23 @@
-import { classNames } from "@/shared/lib/classNames/classNames";
-import { memo, useCallback } from "react";
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { memo, useCallback } from 'react';
 
-import { articlesPageReducer } from "../../model/slices/articlesPageSlice";
-import cls from "./ArticlesPage.module.scss";
+import { articlesPageReducer } from '../../model/slices/articlesPageSlice';
+import cls from './ArticlesPage.module.scss';
 
-import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
   DynamicModuleLoader,
   ReducersList,
-} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-
-import { Page } from "@/widgets/Page";
-import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
-import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
-import { useSearchParams } from "react-router-dom";
-import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
-import { ArticleInfiniteList } from "../ArticleInfiniteList/ArticleInfiniteList";
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { Page } from '@/widgets/Page';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
+import { useSearchParams } from 'react-router-dom';
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
+import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 
 interface ArticlesPageProps {
   className?: string;
@@ -49,6 +49,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
       >
         <ArticlesPageFilters />
         <ArticleInfiniteList className={cls.list} />
+        <ArticlePageGreeting />
       </Page>
     </DynamicModuleLoader>
   );
